@@ -1,0 +1,29 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: api-gateway-poc
+  description: Sample API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /hello:
+    get:
+      summary: Greet a user
+      operationId: hello
+      x-google-backend:
+        address: https://hello-app-22llm3kpaa-uc.a.run.app
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+security:
+  - api_key: []
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"          
