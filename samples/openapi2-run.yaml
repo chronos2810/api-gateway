@@ -1,0 +1,64 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: api-gateway-poc
+  description: Sample API on API Gateway with a Cloud Run backend
+  version: 1.0.0
+schemes:
+  - https
+produces:
+  - application/json
+
+x-google-backend:
+  address: https://flaskapp-v1-dyiuplywdq-uc.a.run.app/
+  protocol: h2
+
+paths:
+  /:
+    get:
+      summary: Top Page
+      operationId: top_page
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+
+  /hello:
+    get:
+      summary: Greet a user
+      operationId: hello
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+
+  /foo:
+    post:
+      summary: Reply
+      operationId: foo
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+
+
+  /hello/{username}:
+      get:
+        summary: Greet a user by name
+        description: A successful response
+        operationId: getUserById
+        parameters:
+          - name: username
+            in: path
+            description: Username
+            required: true
+            type: string
+        responses:
+          '200':
+            description: Successful operation
+
